@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es-CO">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="MICRONEGOCIO: gestión operativa y analítica predictiva (demanda, venta cruzada, segmentación RFM y asesor con IA) para micronegocios." />
+    <meta name="theme-color" content="#0A0D0C" />
+    <title>MICRONEGOCIO · Gestión y analítica predictiva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=Jost:wght@300..600&display=swap" />
+    <script>
+      // Aplica el tema guardado antes del primer pintado para evitar el destello
+      try {
+        var t = localStorage.getItem('mn-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

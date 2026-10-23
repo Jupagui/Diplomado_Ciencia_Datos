@@ -1,0 +1,12 @@
+venv/
+.env
+data/*.db
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+data/.fernet_key
+.fernet_key
+*.db
