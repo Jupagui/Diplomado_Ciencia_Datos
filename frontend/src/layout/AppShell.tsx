@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../auth/useAuth';
+import { AgenteOrbita } from '../ui/AgenteOrbita';
 import { Button } from '../ui/Button';
 import { Icon, IconSprite, type IconName } from '../ui/Icon';
 import { ThemeSwitch } from '../ui/Inputs';
@@ -74,6 +75,8 @@ export default function AppShell() {
         <main id="contenido" className="shell-main" tabIndex={-1}>
           <Outlet />
         </main>
+
+        <AgenteOrbita />
 
         <nav className="bottom-nav" aria-label="Principal">
           {NAV.map((n) => (

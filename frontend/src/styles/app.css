@@ -107,6 +107,41 @@
 .asesor-chat .bubble.bot { max-width: 100%; width: 100%; }
 .asesor-chat .bubble.user { max-width: 88%; }
 
+/* Agente flotante: orbe del asesor IA (se mueve por JS en los costados; ver ui/AgenteOrbita.tsx) */
+.agente {
+  position: fixed; left: 0; top: 0; z-index: 60; width: 4rem; height: 4rem; padding: 0; border: 0; border-radius: 50%;
+  display: grid; place-items: center; color: var(--gold); cursor: pointer; will-change: transform;
+  background: var(--glass); backdrop-filter: blur(10px) saturate(1.2); -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  box-shadow: var(--e-2), 0 0 0 1px var(--line-strong), 0 0 1.5rem color-mix(in srgb, var(--gold) 26%, transparent);
+  transition: box-shadow var(--dur-2) var(--ease-standard);
+}
+.agente:hover, .agente:focus-visible, .agente.atraido {
+  box-shadow: var(--e-2), 0 0 0 1px var(--gold), 0 0 2.25rem color-mix(in srgb, var(--gold) 55%, transparent);
+}
+.agente svg { width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.agente .a-anillo { fill: none; stroke: var(--gold); stroke-width: 1.4; }
+.agente .a-orbita { fill: none; stroke: var(--text-2); stroke-width: 0.9; stroke-opacity: 0.7; }
+.agente .a-giro { transform-box: view-box; transform-origin: 20px 20px; animation: spin 9s linear infinite; }
+.agente .a-luna { fill: var(--gold); }
+.agente .a-nucleo { fill: var(--gold-hi, var(--gold)); transform-box: fill-box; transform-origin: center; animation: respirar 3.2s var(--ease-standard) infinite; }
+.agente-etq {
+  position: absolute; top: 50%; right: calc(100% + 0.5rem); transform: translateY(-50%); white-space: nowrap; pointer-events: none;
+  padding: 0.25rem 0.75rem; border-radius: var(--r-pill); background: var(--glass); border: 1px solid var(--line-strong);
+  color: var(--text); font-size: var(--fs-1); opacity: 0; transition: opacity var(--dur-2) var(--ease-standard);
+}
+.agente[data-lado="i"] .agente-etq { right: auto; left: calc(100% + 0.5rem); }
+.agente:hover .agente-etq, .agente:focus-visible .agente-etq, .agente.atraido .agente-etq { opacity: 1; }
+/* Móvil o sin puntero fino: fijo sobre la barra inferior, con flotación leve */
+.agente--fijo {
+  left: auto; top: auto; right: max(var(--sp-2), env(safe-area-inset-right, 0px));
+  bottom: calc(var(--bottomnav-h) + env(safe-area-inset-bottom, 0px) + var(--sp-2)); width: 3.5rem; height: 3.5rem;
+  animation: flotar 4.5s var(--ease-standard) infinite;
+}
+.agente--fijo .agente-etq { display: none; }
+/* Dentro del panel del asesor: una sola columna */
+.asesor-panel .plan-actions { grid-template-columns: minmax(0, 1fr); }
+.asesor-panel .chat-log { max-height: calc(100dvh - 26rem); min-height: 10rem; }
+
 /* Login */
 .login-page { position: relative; min-height: 100dvh; display: grid; place-items: center; padding: var(--sp-3) var(--gutter); isolation: isolate; }
 .login-page .backdrop { z-index: -1; }

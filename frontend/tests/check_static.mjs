@@ -90,5 +90,15 @@ for (const f of ['README.md', 'CLAUDE.md']) {
 }
 check('README explica como correr (iniciar_sistema.bat)', rd(join(ROOT, 'README.md')).includes('iniciar_sistema.bat'));
 
+// Agente flotante (orbe del asesor IA)
+const shellTxt = rd(join(FRONT, 'src', 'layout', 'AppShell.tsx'));
+const agente = existsSync(join(FRONT, 'src', 'ui', 'AgenteOrbita.tsx')) ? rd(join(FRONT, 'src', 'ui', 'AgenteOrbita.tsx')) : '';
+check('agente: AgenteOrbita existe y se monta en AppShell', agente.length > 500 && /import \{ AgenteOrbita \}/.test(shellTxt) && /<AgenteOrbita \/>/.test(shellTxt));
+check('agente: no se monta en Login (fuera del shell)', !/AgenteOrbita/.test(rd(join(FRONT, 'src', 'pages', 'Login.tsx'))));
+check('agente: se oculta en /asesor', /startsWith\('\/asesor'\)/.test(agente));
+check('agente: respeta prefers-reduced-motion por JS', /prefers-reduced-motion: reduce/.test(agente));
+check('agente: usa el panel Sheet y el chat compartido', /<Sheet/.test(agente) && /<AsesorChat/.test(agente));
+check('agente: estilos .agente en app.css', /\.agente\s*\{/.test(rd(join(FRONT, 'src', 'styles', 'app.css'))));
+
 console.log(`\nResumen estatico: ${ok} ok, ${fail} fallan`);
 process.exit(fail ? 1 : 0);
