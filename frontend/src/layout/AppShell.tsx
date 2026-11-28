@@ -22,28 +22,25 @@ const NAV: { to: string; texto: string; icon: IconName; fin?: boolean }[] = [
   { to: '/datos', texto: 'Datos', icon: 'datos' },
 ];
 
-/** Cada zona de la app tiene su propio fondo animado (cambia con la ruta mediante `key`). */
+/** Cada zona de la app tiene su propio fondo animado (cambia con la ruta mediante `key`).
+ *  Encima del fondo va `.tinta`: ilustraciones de la marca dibujadas en tiza, distintas por pantalla (ver app.css).
+ *  Analítica y Datos no llevan ilustración: son pantallas de lectura y el adorno competía con los números. */
 function Fondo({ ruta }: { ruta: string }) {
-  if (ruta === '/') return <div className={cls('backdrop', 'is-home')} key="home"><div className="photo" /><div className="aura a1" /><div className="aura a2" /><OrbitBackdrop /><div className="scrim" /></div>;
-  if (ruta.startsWith('/pos') || ruta.startsWith('/productos')) return <div className="backdrop" key="bp"><BlueprintBackdrop /><div className="scrim" /></div>;
-  if (ruta.startsWith('/clientes')) return <div className="backdrop" key="cli"><BlueprintBackdrop /><div className="scrim" /></div>;
+  if (ruta === '/') return <div className={cls('backdrop', 'is-home')} key="home"><div className="aura a1" /><div className="aura a2" /><OrbitBackdrop /><div className="scrim" /><div className="tinta t-inicio" /></div>;
+  if (ruta.startsWith('/pos') || ruta.startsWith('/productos')) return <div className="backdrop" key="bp"><BlueprintBackdrop /><div className="scrim" /><div className={cls('tinta', ruta.startsWith('/pos') ? 't-pos' : 't-productos')} /></div>;
+  if (ruta.startsWith('/clientes')) return <div className="backdrop" key="cli"><BlueprintBackdrop /><div className="scrim" /><div className="tinta t-clientes" /></div>;
   if (ruta.startsWith('/analitica')) return <div className="backdrop" key="ana"><Constellation /><div className="scrim" /></div>;
-  if (ruta.startsWith('/asesor')) return <div className="backdrop" key="ase"><TopoRadar /><div className="scrim" /></div>;
+  if (ruta.startsWith('/asesor')) return <div className="backdrop" key="ase"><TopoRadar /><div className="scrim" /><div className="tinta t-asesor" /></div>;
   if (ruta.startsWith('/datos')) return <div className="backdrop" key="dat"><SealTrace /><div className="scrim" /></div>;
   return null;
 }
 
 export function Marca() {
   return (
-    <NavLink to="/" className="brand" aria-label="MICRONEGOCIO, ir al inicio">
-      <svg className="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
-        <circle className="ring-o" cx="20" cy="20" r="10" />
-        <g className="spinner">
-          <ellipse className="orbit" cx="20" cy="20" rx="18" ry="6.5" transform="rotate(-22 20 20)" />
-          <circle className="moon" cx="36.7" cy="13.3" r="2.2" />
-        </g>
-      </svg>
-      <span className="brand-word">MICRONEGOCIO</span>
+    <NavLink to="/" className="brand" aria-label="Red Rooster, ir al inicio">
+      {/* Gallo 3R: isotipo del manual para espacios pequeños y cuando el nombre ya va escrito (mín. 40 px en pantalla) */}
+      <img className="brand-mark" src="/marca/gallo-rojo.webp" width={40} height={40} alt="" />
+      <span className="brand-word">RED ROOSTER</span>
     </NavLink>
   );
 }

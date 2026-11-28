@@ -14,7 +14,7 @@ backend/app
   etl/         extract (watermark, PII descifrada en memoria) · transform · load · pipeline
   ml/          demand_xgb · basket_apriori · rfm_kmeans
   seed/        generador_sintetico (semilla fija)
-frontend/      Vite + React 19 + TS · tema «Órbita» (copiado de Orbis) · fondos animados por ruta · Recharts
+frontend/      Vite + React 19 + TS · tema «Órbita» (copiado de Orbis) con la marca Red Rooster · fondos animados por ruta · Recharts
 ```
 
 ## Modelo de datos
@@ -53,6 +53,20 @@ Los valores cambian ligeramente con la fecha de siembra (las ventas se generan r
 | Ingeniero de datos | ETL, esquema, cifrado, calidad (imputación de nulos) |
 | Científico de datos | validación con MAE/R²/silueta/lift y split temporal sin fuga |
 | Analista de decisiones e IA | asesor con guardrails (descuento ≤ 30 %, acciones con datos citados), contexto de festivos CO y estacionalidad |
+
+## Marca Red Rooster en el frontend
+Sigue el *Manual de marca Red Rooster v1.0*: pizarra, gallo rojo y letra de cartel.
+
+| Elemento | Dónde | Regla del manual |
+|---|---|---|
+| Colores | `src/styles/tokens.css` (`--rr-rojo`, `--rr-pizarra`, `--rr-tiza`, `--rr-mostaza`, `--rr-brasa`, `--rr-ocre`) | Tema oscuro = pizarra con texto tiza y acento mostaza; tema claro = tiza con texto pizarra y acento rojo |
+| Fuentes | `public/fonts/` + `@font-face` en `src/styles/app.css`; Barlow por Google Fonts | Big Noodle: títulos, precios y números · Barlow: texto · Sunset Boulevard: nombre RED ROOSTER en el login (mín. 48 px) · Heartbreaking: lema |
+| Logo | `public/marca/` | Gallo 3R rojo en la barra (espacio pequeño) · sello tiza en pizarra y sello rojo en tiza (login) · favicon = gallo 3R |
+| Ilustración | `public/marca/bodegon-pollo.webp` en el fondo del Inicio | Nunca fotos de platos |
+| Elementos | Tres estrellas en el antetítulo, línea con estrella en el lema, franja roja en la barra | Máximo dos recursos por pantalla además del logo |
+| Gráficos | `--serie-1..6` leídas en `charts/paleta.ts` | Solo colores de la paleta |
+
+Las versiones tiza y roja del sello y del gallo salen de los originales del sitio web (`WEBSITE/assets/images`) pintados en una sola tinta. **Licencias:** Heartbreaking y Sunset Boulevard son demos de Woodcutter; antes de publicar el sistema fuera del uso académico hay que comprar la licencia comercial o quitarlas (el respaldo es Big Noodle).
 
 ## Frontend: páginas
 Inicio (KPIs, ventas, categorías, top y stock bajo) · Punto de venta · Productos (CRUD + kardex) · Clientes (PII enmascarada/revelable) · Analítica (demanda, venta cruzada, segmentos) · Asesor IA · Datos/ETL.

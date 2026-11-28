@@ -24,9 +24,11 @@ export default function Inicio() {
 
   return (
     <div className="page">
-      <header className="page-head">
-        <p className="eyebrow rise" style={vars({ '--i': 0 })}>Panel operativo</p>
-        <h1 className="title rise" style={vars({ '--i': 1 })}>Tu negocio, <em>hoy</em></h1>
+      {/* Banner rojo como la carpa del local: tiza sobre rojo, sello tiza ladeado */}
+      <header className="page-head banner-rr">
+        <div className="banner-sello" aria-hidden="true" />
+        <p className="eyebrow rise" style={vars({ '--i': 0 })}>Panel operativo · Suba Fontanar</p>
+        <h1 className="title rise" style={vars({ '--i': 1 })}>Tu restaurante, <em>hoy</em></h1>
         <p className="lead rise" style={vars({ '--i': 2 })}>Ventas, margen e inventario del periodo, calculados directamente sobre las transacciones registradas.</p>
         <Segmented etiqueta="Periodo" opciones={PERIODOS} valor={dias} onChange={setDias} />
       </header>

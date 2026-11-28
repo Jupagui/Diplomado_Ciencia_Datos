@@ -3,7 +3,7 @@ import { leerVar, useTema } from '../ui/theme';
 
 export interface Paleta {
   gold: string; sage: string; info: string; line: string; muted: string; text: string; raised: string; warn: string; danger: string;
-  /** Serie categórica: colores de módulo, legibles en ambos temas. */
+  /** Serie categórica: solo colores de la paleta Red Rooster (`--serie-1..6` en tokens.css), distintos por tema. */
   cat: string[];
 }
 
@@ -16,7 +16,7 @@ export function usePaleta(): Paleta {
     return {
       gold: v('--gold'), sage: v('--sage'), info: v('--info'), line: v('--line'), muted: v('--muted'), text: v('--text-2'),
       raised: v('--raised'), warn: v('--warn'), danger: v('--danger'),
-      cat: [v('--gold'), v('--sage'), v('--info'), v('--m-comida'), v('--m-explora'), v('--m-salud')],
+      cat: [1, 2, 3, 4, 5, 6].map((i) => v(`--serie-${i}`)),
     };
   }, [tema]);
 }

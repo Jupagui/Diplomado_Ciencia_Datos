@@ -15,6 +15,18 @@ export function formatoCompacto(v: number): string {
   return String(Math.round(v));
 }
 
+/** Tiempo relativo en lenguaje cotidiano: «hace 5 min», «hace 3 h», «hace 2 días». */
+export function formatoHace(iso: string | null | undefined): string {
+  if (!iso) return 'nunca';
+  const min = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
+  if (min < 1) return 'hace un momento';
+  if (min < 60) return `hace ${min} min`;
+  const h = Math.round(min / 60);
+  if (h < 24) return `hace ${h} h`;
+  const d = Math.round(h / 24);
+  return d === 1 ? 'ayer' : `hace ${d} días`;
+}
+
 export function formatoFecha(iso: string | null | undefined, conHora = false): string {
   if (!iso) return '—';
   const d = new Date(iso);

@@ -134,7 +134,8 @@ export function AgenteOrbita() {
       >
         <svg viewBox="0 0 40 40" aria-hidden="true">
           <circle className="a-anillo" cx="20" cy="20" r="10" />
-          <circle className="a-nucleo" cx="20" cy="20" r="4" />
+          {/* Núcleo: el gallo 3R de la marca, que «respira» en el centro de la órbita */}
+          <image className="a-nucleo" href="/marca/gallo-rojo.webp" x="13" y="13" width="14" height="14" />
           <g className="a-giro">
             <ellipse className="a-orbita" cx="20" cy="20" rx="18" ry="6.5" transform="rotate(-22 20 20)" />
             <circle className="a-luna" cx="36.7" cy="13.3" r="2.2" />

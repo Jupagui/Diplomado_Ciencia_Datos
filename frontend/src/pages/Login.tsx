@@ -1,7 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/useAuth';
-import { Marca } from '../layout/AppShell';
 import { mensajeError } from '../services/api';
 import { Button } from '../ui/Button';
 import { Icon, IconSprite } from '../ui/Icon';
@@ -36,13 +35,24 @@ export default function Login() {
   return (
     <div className="login-page">
       <IconSprite />
-      <div className="backdrop is-home"><div className="aura a1" /><div className="aura a2" /><OrbitBackdrop /><div className="scrim" /></div>
+      <div className="backdrop is-home"><div className="aura a1" /><div className="aura a2" /><OrbitBackdrop /><div className="scrim" /><div className="tinta t-login" /></div>
       <section className="login-card rise" aria-labelledby="login-t">
-        <div className="brand-line"><Marca /><ThemeSwitch /></div>
+        {/* Cabezote de marca sobre rojo gallo: sello tiza, nombre en Sunset Boulevard y lema en Heartbreaking (tiza sobre rojo) */}
+        <div className="login-marca">
+          <div className="login-sello" role="img" aria-label="Sello Red Rooster Restaurant" />
+          <p className="marca-nombre" aria-hidden="true">RED ROOSTER</p>
+          <p className="lema" aria-label="Lo que buscas está en 3R">
+            {/* Heartbreaking pierde las tildes: la de ESTÁ se agrega a mano, como en el mural */}
+            <span aria-hidden="true">LO QUE BUSCAS</span>
+            <span className="linea-estrella" aria-hidden="true">★</span>
+            <span aria-hidden="true">EST<span className="tilde">A</span> EN 3R</span>
+          </p>
+        </div>
+
+        <div className="brand-line"><p className="eyebrow">Acceso</p><ThemeSwitch /></div>
         <div>
-          <p className="eyebrow">Acceso</p>
-          <h1 id="login-t" className="title">Bienvenido a tu <em>negocio</em></h1>
-          <p className="muted small" style={{ marginTop: 'var(--sp-1)' }}>Gestión operativa y analítica predictiva para micronegocios.</p>
+          <h1 id="login-t" className="title">Bienvenido a tu <em>restaurante</em></h1>
+          <p className="muted small" style={{ marginTop: 'var(--sp-1)' }}>Ventas, inventario y analítica de Red Rooster · Suba Fontanar.</p>
         </div>
         <form onSubmit={enviar}>
           <Field label="Usuario" icon="usuarios" value={usuario} onChange={(e) => setUsuario(e.target.value)} autoComplete="username" autoFocus required />

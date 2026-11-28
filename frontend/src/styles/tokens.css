@@ -1,22 +1,40 @@
-/* Sistema «Órbita». Todo valor visual sale de aquí.
-   Oscuro primero: el claro se activa con la preferencia del sistema o con data-theme="light".
-   [data-theme] también funciona en contenedores, para mostrar un tema dentro del otro. */
+/* Sistema «Órbita» con la marca Red Rooster (Manual de marca v1.0). Todo valor visual sale de aquí.
+   Oscuro primero (pizarra): el claro (tiza) se activa con la preferencia del sistema o con data-theme="light".
+   [data-theme] también funciona en contenedores, para mostrar un tema dentro del otro.
+
+   Los nombres de las variables se conservan del sistema «Órbita» para no tocar cada componente:
+   --gold = acento principal (Amarillo Mostaza en pizarra, Rojo Gallo en tiza),
+   --sage = acento secundario (Ocre Muro en pizarra, Rojo Brasa en tiza). */
 
 /* ---------- Valores fijos (iguales en ambos temas) ---------- */
 :root {
-  /* Rampas */
+  /* Paleta oficial Red Rooster (manual, sección 03 · Color) */
+  --rr-rojo: #D21F1B;     /* Rojo Gallo · principal */
+  --rr-pizarra: #151313;  /* Negro Pizarra · fondo */
+  --rr-tiza: #F4EFE6;     /* Blanco Tiza · texto */
+  --rr-mostaza: #F2C12E;  /* Amarillo Mostaza · acento: precios, productos, llamados a la acción */
+  --rr-brasa: #8B0F0B;    /* Rojo Brasa · apoyo */
+  --rr-ocre: #E3B866;     /* Ocre Muro · apoyo */
+
+  /* Rampas heredadas de «Órbita» (casi sin uso; se conservan por compatibilidad) */
   --gold-50: #FBF5EA; --gold-100: #F3E6CC; --gold-200: #E9D3A8; --gold-300: #D8B87E; --gold-400: #C29A5A;
   --gold-500: #A57D3F; --gold-600: #7A5A1F; --gold-700: #5F4415; --gold-800: #3F2D0E; --gold-900: #221808;
   --sage-50: #EEF7F3; --sage-100: #D3EBE1; --sage-200: #AED8C7; --sage-300: #86C2AC; --sage-400: #5FA68D;
   --sage-500: #448A73; --sage-600: #2A6553; --sage-700: #1F5243; --sage-800: #14372D; --sage-900: #0A1D18;
-  --neutral-0: #FFFFFF; --neutral-50: #F8F8F5; --neutral-100: #F1F2EE; --neutral-200: #DCDFD8; --neutral-300: #B9BEB5;
-  --neutral-400: #8E9A94; --neutral-500: #69756F; --neutral-600: #56605B; --neutral-700: #39413D; --neutral-800: #26302C;
-  --neutral-850: #161D1A; --neutral-900: #101513; --neutral-950: #0A0D0C;
+  --neutral-0: #FFFFFF; --neutral-50: #FAF7F1; --neutral-100: #F4EFE6; --neutral-200: #E3DACB; --neutral-300: #C9BCA8;
+  --neutral-400: #A0968B; --neutral-500: #6B615A; --neutral-600: #574E48; --neutral-700: #3A3330; --neutral-800: #2A2523;
+  --neutral-850: #1B1817; --neutral-900: #151313; --neutral-950: #0E0C0C;
 
-  /* Tipografía: pareja Didone + geométrica + monoespaciada */
-  --font-display: "Bodoni Moda", "Didot", "Bodoni 72", "Times New Roman", serif;
-  --font-ui: "Jost", "Futura", "Avenir Next", "Century Gothic", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  /* Tipografía de marca (manual, sección 04):
+     - Big Noodle Titling: títulos, precios, nombres de platos, números (la única con tildes, Ñ y $).
+     - Barlow: texto de lectura. Barlow Condensed reemplaza a la monoespaciada en cifras y etiquetas.
+     - Heartbreaking (lema, máx. 5 palabras) y Sunset Boulevard (nombre RED ROOSTER, mín. 48 px) son demo:
+       sin $, y Sunset sin números, Ñ ni tildes. */
+  --font-display: "Big Noodle Titling", "Barlow Condensed", "Oswald", Impact, sans-serif;
+  --font-ui: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Barlow Condensed", "Barlow", "Segoe UI", sans-serif;
+  --font-cartel: "Heartbreaking", "Big Noodle Titling", Impact, sans-serif;
+  --font-marca: "Sunset Boulevard", "Big Noodle Titling", Impact, sans-serif;
 
   /* Escala de 9 pasos. Los pasos 6 a 9 son fluidos: el valor máximo es el nominal. */
   --fs-1: 0.75rem;
@@ -41,10 +59,10 @@
   --sp-8: 8rem;
   --gutter: max(16px, 4vw);
 
-  /* Radios */
-  --r-xs: 0.25rem;
-  --r-sm: 0.5rem;
-  --r-md: 1rem;
+  /* Radios: más rectos que «Órbita», como etiquetas de pizarra */
+  --r-xs: 0.125rem;
+  --r-sm: 0.25rem;
+  --r-md: 0.5rem;
   --r-pill: 999px;
 
   /* Movimiento */
@@ -67,86 +85,103 @@
   :root { --bottomnav-h: 4.5rem; }
 }
 
-/* ---------- Tema oscuro (predeterminado) ---------- */
+/* ---------- Tema oscuro: pizarra (predeterminado) ---------- */
 :root,
 [data-theme="dark"] {
-  --bg: #0A0D0C;
-  --surface: #101513;
-  --raised: #161D1A;
-  --line: #26302C;
-  --line-strong: #3A4641;
-  --control: #69756F;
+  --bg: #151313;
+  --surface: #1B1817;
+  --raised: #231F1E;
+  --line: #332C2A;
+  --line-strong: #4A413E;
+  --control: #7C716A;
 
-  --text: #F1EDE4;
-  --text-2: #BFC6C1;
-  --muted: #8E9A94;
+  --text: #F4EFE6;
+  --text-2: #D6CEC2;
+  --muted: #A0968B;
 
-  --gold: #D8B87E;
-  --gold-hi: #E9CF9C;
-  --gold-ink: #1A140A;
-  --gold-soft: #2A2416;
-  --sage: #86C2AC;
-  --sage-ink: #0A1A14;
-  --sage-soft: #13261F;
+  --gold: #F2C12E;
+  --gold-hi: #F7D35F;
+  --gold-ink: #151313;
+  --gold-soft: #2C2412;
+  --sage: #E3B866;
+  --sage-ink: #151313;
+  --sage-soft: #2A2216;
+
+  /* Logo según el fondo (manual, sección 02): sello tiza sobre pizarra */
+  --sello: url("/marca/sello-tiza.webp");
+  /* Sombra dura de afiche bajo etiquetas y botones; ilustraciones a tinta en tiza y su opacidad */
+  --etq-sombra: #D21F1B;
+  --tinta-filtro: none;
+  --tinta-op: 0.13;
 
   --ok: #6FCF97;     --ok-soft: #12261B;
-  --warn: #F0B35A;   --warn-soft: #2A2010;
-  --danger: #FF8A7A; --danger-soft: #2C1513;
+  --warn: #E3B866;   --warn-soft: #2A2216;
+  --danger: #FF8A7A; --danger-soft: #2E1412;
   --info: #8DB8F2;   --info-soft: #121E2E;
 
   /* Acentos de módulo */
-  --m-vial: #F0B35A;
-  --m-salud: #FF8A7A;
-  --m-comida: #E39A6B;
+  --m-vial: #F2C12E;
+  --m-salud: #D21F1B;
+  --m-comida: #E3B866;
   --m-taller: #8DB8F2;
-  --m-explora: #B79CED;
+  --m-explora: #D6CEC2;
 
-  --grid-line: rgba(216, 184, 126, 0.075);
-  --grid-line-strong: rgba(216, 184, 126, 0.14);
-  --glass: rgba(16, 21, 19, 0.66);
+  /* Series de los gráficos: solo colores de la paleta (el rojo solo como marca grande, no como texto) */
+  --serie-1: #F2C12E; --serie-2: #D21F1B; --serie-3: #E3B866;
+  --serie-4: #D6CEC2; --serie-5: #A0968B; --serie-6: #8B0F0B;
+
+  --grid-line: rgba(244, 239, 230, 0.06);
+  --grid-line-strong: rgba(244, 239, 230, 0.11);
+  --glass: rgba(21, 19, 19, 0.74);
   --shadow-color: rgba(0, 0, 0, 0.72);
-  --aura: 0.2;
-  --photo: 0.46;
+  --aura: 0.18;
+  --photo: 0.5;
   --e-1: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   --e-2: 0 1.5rem 3rem -1.5rem var(--shadow-color);
   --tile-filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.88) saturate(0.55);
   color-scheme: dark;
 }
 
-/* ---------- Tema claro ---------- */
+/* ---------- Tema claro: tiza ---------- */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --bg: #F1F2EE;
-    --surface: #F8F8F5;
+    --bg: #F4EFE6;
+    --surface: #FAF7F1;
     --raised: #FFFFFF;
-    --line: #DCDFD8;
-    --line-strong: #B9BEB5;
-    --control: #7A827C;
-    --text: #121614;
-    --text-2: #39413D;
-    --muted: #56605B;
-    --gold: #7A5A1F;
-    --gold-hi: #5F4415;
-    --gold-ink: #FFF8EA;
-    --gold-soft: #F2EAD9;
-    --sage: #2A6553;
-    --sage-ink: #FFFFFF;
-    --sage-soft: #E2EFE9;
+    --line: #E3DACB;
+    --line-strong: #C9BCA8;
+    --control: #8A7F74;
+    --text: #151313;
+    --text-2: #3A3330;
+    --muted: #6B615A;
+    --gold: #D21F1B;
+    --gold-hi: #8B0F0B;
+    --gold-ink: #F4EFE6;
+    --gold-soft: #F6E0D9;
+    --sage: #8B0F0B;
+    --sage-ink: #F4EFE6;
+    --sage-soft: #F1DEDA;
+    --sello: url("/marca/sello-rojo.webp");
+  --etq-sombra: #151313;
+  --tinta-filtro: invert(1);
+  --tinta-op: 0.09;
     --ok: #1D7346;     --ok-soft: #E1F1E7;
     --warn: #875700;   --warn-soft: #F6ECD9;
     --danger: #B3261E; --danger-soft: #F8E3E1;
     --info: #1F5FA8;   --info-soft: #E2ECF8;
-    --m-vial: #875700;
-    --m-salud: #B3261E;
-    --m-comida: #9C4A1A;
+    --m-vial: #D21F1B;
+    --m-salud: #8B0F0B;
+    --m-comida: #E3B866;
     --m-taller: #1F5FA8;
-    --m-explora: #5B3FA8;
-    --grid-line: rgba(122, 90, 31, 0.08);
-    --grid-line-strong: rgba(122, 90, 31, 0.15);
-    --glass: rgba(248, 248, 245, 0.74);
-    --shadow-color: rgba(40, 36, 28, 0.22);
-    --aura: 0.16;
-    --photo: 0.34;
+    --m-explora: #151313;
+    --serie-1: #D21F1B; --serie-2: #151313; --serie-3: #E3B866;
+    --serie-4: #8B0F0B; --serie-5: #6B615A; --serie-6: #F2C12E;
+    --grid-line: rgba(21, 19, 19, 0.06);
+    --grid-line-strong: rgba(21, 19, 19, 0.12);
+    --glass: rgba(250, 247, 241, 0.8);
+    --shadow-color: rgba(40, 28, 24, 0.22);
+    --aura: 0.12;
+    --photo: 0.3;
     --e-1: inset 0 1px 0 rgba(255, 255, 255, 0.7);
     --tile-filter: none;
     color-scheme: light;
@@ -154,37 +189,43 @@
 }
 
 [data-theme="light"] {
-  --bg: #F1F2EE;
-  --surface: #F8F8F5;
+  --bg: #F4EFE6;
+  --surface: #FAF7F1;
   --raised: #FFFFFF;
-  --line: #DCDFD8;
-  --line-strong: #B9BEB5;
-  --control: #7A827C;
-  --text: #121614;
-  --text-2: #39413D;
-  --muted: #56605B;
-  --gold: #7A5A1F;
-  --gold-hi: #5F4415;
-  --gold-ink: #FFF8EA;
-  --gold-soft: #F2EAD9;
-  --sage: #2A6553;
-  --sage-ink: #FFFFFF;
-  --sage-soft: #E2EFE9;
+  --line: #E3DACB;
+  --line-strong: #C9BCA8;
+  --control: #8A7F74;
+  --text: #151313;
+  --text-2: #3A3330;
+  --muted: #6B615A;
+  --gold: #D21F1B;
+  --gold-hi: #8B0F0B;
+  --gold-ink: #F4EFE6;
+  --gold-soft: #F6E0D9;
+  --sage: #8B0F0B;
+  --sage-ink: #F4EFE6;
+  --sage-soft: #F1DEDA;
+  --sello: url("/marca/sello-rojo.webp");
+  --etq-sombra: #151313;
+  --tinta-filtro: invert(1);
+  --tinta-op: 0.09;
   --ok: #1D7346;     --ok-soft: #E1F1E7;
   --warn: #875700;   --warn-soft: #F6ECD9;
   --danger: #B3261E; --danger-soft: #F8E3E1;
   --info: #1F5FA8;   --info-soft: #E2ECF8;
-  --m-vial: #875700;
-  --m-salud: #B3261E;
-  --m-comida: #9C4A1A;
+  --m-vial: #D21F1B;
+  --m-salud: #8B0F0B;
+  --m-comida: #E3B866;
   --m-taller: #1F5FA8;
-  --m-explora: #5B3FA8;
-  --grid-line: rgba(122, 90, 31, 0.08);
-  --grid-line-strong: rgba(122, 90, 31, 0.15);
-  --glass: rgba(248, 248, 245, 0.74);
-  --shadow-color: rgba(40, 36, 28, 0.22);
-  --aura: 0.16;
-  --photo: 0.34;
+  --m-explora: #151313;
+  --serie-1: #D21F1B; --serie-2: #151313; --serie-3: #E3B866;
+  --serie-4: #8B0F0B; --serie-5: #6B615A; --serie-6: #F2C12E;
+  --grid-line: rgba(21, 19, 19, 0.06);
+  --grid-line-strong: rgba(21, 19, 19, 0.12);
+  --glass: rgba(250, 247, 241, 0.8);
+  --shadow-color: rgba(40, 28, 24, 0.22);
+  --aura: 0.12;
+  --photo: 0.3;
   --e-1: inset 0 1px 0 rgba(255, 255, 255, 0.7);
   --tile-filter: none;
   color-scheme: light;

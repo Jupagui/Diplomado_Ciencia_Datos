@@ -1,4 +1,10 @@
-/* Estilos propios de MICRONEGOCIO sobre el sistema «Órbita». Solo usa tokens. */
+/* Estilos propios de Red Rooster sobre el sistema «Órbita». Solo usa tokens.
+   La capa de marca (manual v1.0) está al final del archivo. */
+
+/* Fuentes de marca, servidas desde public/fonts */
+@font-face { font-family: "Big Noodle Titling"; src: url("/fonts/big_noodle_titling.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Heartbreaking"; src: url("/fonts/heartbreaking.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Sunset Boulevard"; src: url("/fonts/sunset-boulevard.otf") format("opentype"); font-display: swap; }
 
 /* Móvil: 7 destinos en la barra inferior */
 .bottom-nav { grid-template-columns: repeat(7, 1fr); padding-inline: 0; }
@@ -74,7 +80,7 @@
 .prod-tile:disabled { opacity: 0.45; cursor: not-allowed; }
 .prod-tile b { font-weight: 500; font-size: var(--fs-2); line-height: 1.25; }
 .prod-tile span { font-size: var(--fs-1); color: var(--muted); }
-.prod-tile .price { color: var(--gold); font-family: var(--font-mono); font-size: var(--fs-2); }
+.prod-tile .price { color: var(--gold); font-family: var(--font-display); font-size: var(--fs-4); letter-spacing: 0.04em; line-height: 1; }
 .cart-lines { display: grid; gap: var(--sp-1); margin: 0; }
 .cart-line { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: var(--sp-1); align-items: center; padding-block: var(--sp-half); border-bottom: 1px solid var(--line); }
 .cart-line b { font-weight: 500; font-size: var(--fs-2); overflow-wrap: anywhere; }
@@ -155,3 +161,292 @@
 .run-metrics { display: grid; gap: var(--sp-2); grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); }
 .run-metrics .stat { min-width: 0; }
 .run-metrics .num-texto { font-family: var(--font-ui); font-size: var(--fs-4); line-height: 1.2; }
+
+/* =====================================================================
+   Marca Red Rooster (Manual de marca v1.0): pizarra, gallo rojo y letra de cartel
+   ===================================================================== */
+
+/* Tipografía: Big Noodle es de un solo peso y solo mayúsculas. Sin negrita ni cursiva falsas. */
+h1, h2, h3, h4, .title, .stat .num, .brand-word, .cart-total, .hero-sub, .module-card .name {
+  font-weight: 400; letter-spacing: 0.03em; font-style: normal;
+}
+.title, h1 { line-height: 0.98; }
+.title em, .hero-sub em { font-style: normal; }
+.stat .num, .kpi-row .card .num { color: var(--text); font-variant-numeric: tabular-nums; }
+/* Big Noodle en tamaños pequeños necesita aire entre letras (+5 a +10 %) */
+.chip, .tag, .pill, .btn { letter-spacing: 0.02em; }
+.eyebrow { font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.18em; }
+/* Tres estrellas, siempre en grupo de tres (3R), antes del antetítulo de cada página */
+/* (reemplaza el doble círculo de «Órbita»: se anulan su tamaño, borde y sombra) */
+.eyebrow::before {
+  content: "★★★"; width: auto; height: auto; border: 0; border-radius: 0; box-shadow: none;
+  font-family: var(--font-ui); letter-spacing: 0.15em; margin-right: 0.15rem; font-size: 0.8em;
+}
+.plan-card li::before { content: "★"; font-size: 0.7em; top: 0.15em; }
+
+/* Barra superior: franja roja, como el banner del local */
+.topbar { border-bottom: 3px solid var(--rr-rojo); }
+.bottom-nav { border-top: 3px solid var(--rr-rojo); }
+.brand-mark { width: 2.5rem; height: 2.5rem; object-fit: contain; }
+.brand-word { font-size: var(--fs-5); letter-spacing: 0.06em; }
+.nav-links a { font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Botón principal: el llamado a la acción va en mostaza sobre pizarra (y en rojo sobre tiza) */
+.btn-primary { font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* Precios y totales: Big Noodle, grandes y en el acento (mostaza en pizarra) */
+.cart-total span:last-child { color: var(--gold); }
+
+/* Fondos: textura gastada de pizarra o de tiza encima de cada fondo animado (no sobre ilustraciones de comida) */
+.backdrop::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.55;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* Halo principal en rojo gallo; el segundo queda en el acento secundario */
+.aura.a1 { background: radial-gradient(circle, var(--rr-rojo) 0, transparent 62%); }
+
+/* Agente flotante: gallo 3R dentro del anillo mostaza */
+.agente .a-nucleo { fill: none; }
+
+/* Login: cabezote de marca */
+.login-card { padding-top: 0; overflow: hidden; }
+.login-card .brand-line .eyebrow { margin: 0; }
+.login-marca {
+  position: relative; display: grid; justify-items: center; gap: var(--sp-1); text-align: center; isolation: isolate;
+  margin-inline: calc(-1 * var(--sp-3)); padding: var(--sp-4) var(--sp-3) var(--sp-3);
+  background: var(--rr-rojo); color: var(--rr-tiza); border-bottom: 4px solid var(--rr-brasa);
+}
+.login-marca::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--gastado); }
+.login-sello { width: 8rem; aspect-ratio: 360 / 355; background: url("/marca/sello-tiza.webp") center / contain no-repeat; transform: rotate(-6deg); filter: drop-shadow(3px 4px 0 rgba(0, 0, 0, 0.25)); }
+.login-marca .marca-nombre, .login-marca .lema, .login-marca .linea-estrella { color: var(--rr-tiza); }
+/* Sunset Boulevard: solo letras y mínimo 48 px para que se vea la sombra rayada */
+.marca-nombre { font-family: var(--font-marca); font-size: max(3rem, var(--fs-7)); line-height: 0.9; letter-spacing: 0.02em; color: var(--text); white-space: nowrap; }
+.lema { display: grid; justify-items: center; gap: 0.35rem; font-family: var(--font-cartel); font-size: var(--fs-5); line-height: 1; color: var(--gold); }
+/* Línea con estrella: separa el titular, como en el mural «Lo que buscas está en 3R» */
+.linea-estrella { display: flex; align-items: center; gap: 0.5rem; width: 12rem; font-family: var(--font-ui); font-size: 0.75rem; }
+.linea-estrella::before, .linea-estrella::after { content: ""; flex: 1; height: 2px; background: currentColor; }
+.tilde { position: relative; }
+.tilde::before { content: ""; position: absolute; left: 52%; top: -0.2em; width: 0.13em; height: 0.24em; background: currentColor; transform: skewX(-38deg); border-radius: 1px; }
+
+
+/* =====================================================================
+   Diseño de cartel (v2): carpa roja, etiquetas de pizarra, sombra de afiche e ilustraciones a tiza
+   ===================================================================== */
+:root {
+  /* Textura gastada para bloques rojos grandes: manchas de rojo brasa + polvo de pintura */
+  --gastado:
+    radial-gradient(38% 55% at 12% 18%, rgba(139, 15, 11, 0.55), transparent 70%),
+    radial-gradient(30% 45% at 88% 85%, rgba(139, 15, 11, 0.5), transparent 70%),
+    radial-gradient(22% 30% at 62% 8%, rgba(255, 255, 255, 0.06), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .08 0 0 0 0 .02 0 0 0 0 .02 0 0 0 .35 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Línea con estrella (manual 05) como máscara: toma el color de quien la usa */
+  --linea-estrella: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 16'%3E%3Cpath d='M0 7h102v2H0zM138 7h102v2H138z'/%3E%3Cpath d='M120 0l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6-5-2.9-5 2.9 1.2-5.6-4.2-3.8 5.6-.6z'/%3E%3C/svg%3E");
+}
+
+/* ---------- Ilustraciones a tiza por pantalla ---------- */
+.backdrop .bgs { opacity: 0.55; }
+.tinta {
+  position: absolute; inset: 0; pointer-events: none; opacity: var(--tinta-op); filter: var(--tinta-filtro);
+  background-repeat: no-repeat; animation: tinta-flota 18s ease-in-out infinite alternate;
+}
+@keyframes tinta-flota { from { transform: translate3d(0, 0, 0) rotate(0deg); } to { transform: translate3d(-0.6rem, -0.9rem, 0) rotate(-0.6deg); } }
+@media (prefers-reduced-motion: reduce) { .tinta { animation: none; } }
+.t-inicio    { background-image: url("/marca/tinta-bodegon.webp"), url("/marca/tinta-papas.webp");
+               background-position: right -2rem bottom -3rem, left 2vw bottom 6vh; background-size: min(46vw, 40rem) auto, min(14vw, 10rem) auto; }
+.t-pos       { background-image: url("/marca/tinta-hamburguesa.webp"), url("/marca/tinta-papas.webp");
+               background-position: right -3rem bottom -2rem, left 1vw top 30vh; background-size: min(36vw, 30rem) auto, min(14vw, 11rem) auto; }
+.t-productos { background-image: url("/marca/tinta-botella.webp"), url("/marca/tinta-pollo.webp");
+               background-position: right 3vw bottom 2vh, left -2rem bottom -2rem; background-size: auto min(70vh, 38rem), min(30vw, 26rem) auto; }
+.t-clientes  { background-image: url("/marca/tinta-combo.webp"); background-position: right -2rem bottom -2rem; background-size: min(44vw, 36rem) auto; }
+.t-asesor   { background-image: url("/marca/tinta-bodegon.webp"); background-position: right -3rem bottom -4rem; background-size: min(42vw, 36rem) auto; }
+.t-login     { background-image: url("/marca/tinta-hamburguesa.webp"), url("/marca/tinta-botella.webp");
+               background-position: right 4vw bottom 6vh, left 6vw top 10vh; background-size: min(30vw, 26rem) auto, auto min(55vh, 30rem); }
+
+/* ---------- Títulos de página: letra de cartel + línea con estrella ---------- */
+.page-head .title {
+  font-family: var(--font-cartel); font-size: var(--fs-8); line-height: 0.92; letter-spacing: 0.01em;
+}
+.page-head .title::after {
+  content: ""; display: block; width: min(20rem, 70%); height: 1rem; margin-top: 0.75rem; background: var(--gold);
+  -webkit-mask: var(--linea-estrella) left center / contain no-repeat; mask: var(--linea-estrella) left center / contain no-repeat;
+}
+.login-card h1 { font-family: var(--font-cartel); font-size: var(--fs-6); }
+
+/* ---------- Inicio: banner como la carpa (tiza sobre rojo; nunca mostaza sobre rojo) ---------- */
+.banner-rr {
+  position: relative; isolation: isolate; overflow: hidden; gap: var(--sp-2);
+  padding: var(--sp-5) clamp(var(--sp-3), 5vw, var(--sp-6)); padding-right: clamp(var(--sp-3), 30vw, 22rem);
+  background: var(--rr-rojo); color: var(--rr-tiza); border-radius: var(--r-sm);
+  box-shadow: 6px 6px 0 var(--rr-brasa), var(--e-2);
+}
+.banner-rr::before { content: ""; position: absolute; inset: 0; z-index: -2; background: var(--gastado); }
+/* Filete interior pintado a mano */
+.banner-rr::after { content: ""; position: absolute; inset: 0.6rem; z-index: -1; border: 2px solid rgba(244, 239, 230, 0.35); border-radius: 2px; pointer-events: none; }
+.banner-rr .eyebrow { color: var(--rr-tiza); }
+.banner-rr .title { color: var(--rr-tiza); font-size: var(--fs-9); text-shadow: 3px 3px 0 var(--rr-brasa); }
+.banner-rr .title em { color: var(--rr-pizarra); text-shadow: 3px 3px 0 rgba(244, 239, 230, 0.25); }
+.banner-rr .title::after { background: var(--rr-tiza); }
+.banner-rr .lead { color: var(--rr-tiza); opacity: 0.92; max-width: 38ch; }
+.banner-sello {
+  position: absolute; z-index: -1; right: clamp(-3rem, 3vw, 3rem); top: 50%; width: clamp(10rem, 26vw, 17rem); aspect-ratio: 360 / 355;
+  background: url("/marca/sello-tiza.webp") center / contain no-repeat; transform: translateY(-50%) rotate(-8deg); opacity: 0.95;
+}
+@media (max-width: 639.98px) {
+  .banner-rr { padding-right: clamp(var(--sp-3), 5vw, var(--sp-6)); }
+  .banner-rr .title { font-size: clamp(2.4rem, 12vw, 3.25rem); }
+  .banner-sello { opacity: 0.18; right: -3rem; }
+}
+.banner-rr .seg { background: rgba(21, 19, 19, 0.28); border-color: rgba(244, 239, 230, 0.45); }
+.banner-rr .seg button { color: var(--rr-tiza); }
+.banner-rr .seg button[aria-pressed="true"] { background: var(--rr-pizarra); color: var(--rr-tiza); box-shadow: none; }
+
+/* ---------- Tarjetas: tableros de pizarra con filete de tiza ---------- */
+.card {
+  background-color: color-mix(in srgb, var(--surface) 93%, transparent); border-color: var(--line-strong); border-radius: var(--r-xs);
+  box-shadow: inset 0 0 0 5px color-mix(in srgb, var(--surface) 93%, transparent), inset 0 0 0 6px color-mix(in srgb, var(--text) 9%, transparent), var(--e-2);
+}
+/* Encabezado de tarjeta = etiqueta de pizarra (palabra dentro de un rectángulo de color, como la columna del menú) */
+.card-h { gap: var(--sp-2); }
+.card-h > .ic { display: none; }
+.card-h h2, .card-h h3 {
+  font-family: var(--font-display); font-size: var(--fs-4); font-weight: 400; letter-spacing: 0.06em; line-height: 1;
+  padding: 0.3em 0.6em 0.2em; background: var(--gold); color: var(--gold-ink); transform: rotate(-1.2deg);
+  box-shadow: 3px 3px 0 var(--etq-sombra);
+}
+
+/* KPIs: cifras grandes de cartel; el dinero en el acento (precio en mostaza) */
+.kpi-row .card { border-top: 4px solid var(--rr-rojo); container-type: inline-size; }
+/* La cifra se ajusta al ancho de su tarjeta (unidad cqi = % del ancho del contenedor):
+   «$ 20.952.300» nunca se sale, y en tarjetas anchas no pasa del tamaño de cartel. */
+.kpi-row .card .num { font-size: min(var(--fs-8), 21cqi); letter-spacing: 0.02em; white-space: nowrap; }
+.kpi-row .card:first-child .num { font-size: min(var(--fs-8), 15.5cqi); }
+/* Ventas es la cifra más larga e importante: su tarjeta es más ancha en escritorio */
+@media (min-width: 900px) { .kpi-row { grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); } }
+.kpi-row .card:nth-child(-n + 2) .num { color: var(--gold); }
+.stat .lbl { font-family: var(--font-display); font-size: var(--fs-4); letter-spacing: 0.08em; color: var(--text-2); max-width: none; }
+
+/* ---------- Navegación: la página activa es una etiqueta ladeada ---------- */
+.nav-links a { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; letter-spacing: 0.07em; border-radius: var(--r-xs); }
+.nav-links a[aria-current="page"] {
+  background: var(--gold); color: var(--gold-ink); transform: rotate(-2deg); box-shadow: 2px 2px 0 var(--etq-sombra);
+}
+.bottom-nav a { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; }
+
+/* ---------- Botones: letra de cartel y sombra dura de afiche ---------- */
+.btn { border-radius: var(--r-xs); font-family: var(--font-display); font-size: 1.05rem; font-weight: 400; letter-spacing: 0.08em; }
+.btn-primary { text-transform: none; box-shadow: 3px 3px 0 var(--etq-sombra); transition: transform var(--dur-1) var(--ease-standard), box-shadow var(--dur-1) var(--ease-standard), background-color var(--dur-1); }
+.btn-primary:hover:not(:disabled), .btn-primary.is-hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--etq-sombra); }
+.btn-primary:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--etq-sombra); }
+.btn-secondary { border-width: 2px; border-color: var(--text-2); }
+
+/* Controles rectos, como etiquetas */
+.seg, .seg button, .chip, .tag, .pill, .field, .qty button { border-radius: var(--r-xs); }
+.seg button { font-family: var(--font-display); font-size: 1.05rem; letter-spacing: 0.06em; }
+.seg button[aria-pressed="true"] { background: var(--gold); color: var(--gold-ink); box-shadow: none; }
+.tabs [role="tab"] { font-family: var(--font-display); font-size: var(--fs-4); letter-spacing: 0.06em; }
+.tabs [role="tab"][aria-selected="true"] { color: var(--gold); border-bottom-width: 3px; }
+
+/* ---------- Tablas como carta: encabezado de cartel y renglones punteados ---------- */
+.tbl th { font-family: var(--font-display); font-size: 1rem; font-weight: 400; letter-spacing: 0.08em; color: var(--text-2); border-bottom: 2px solid var(--gold); padding-bottom: 0.4rem; }
+.tbl td { border-top: 0; border-bottom: 1px dashed color-mix(in srgb, var(--text) 16%, transparent); }
+.tbl td.num-cell { font-family: var(--font-mono); font-size: var(--fs-3); }
+
+/* ---------- Punto de venta: cada producto es un renglón de la carta ---------- */
+.prod-tile { border-radius: var(--r-xs); gap: 0.35rem; padding: var(--sp-2); border-style: dashed; border-color: color-mix(in srgb, var(--text) 18%, transparent); }
+.prod-tile b { font-family: var(--font-display); font-size: var(--fs-4); font-weight: 400; letter-spacing: 0.04em; line-height: 1; }
+.prod-tile .price { font-size: var(--fs-5); }
+.prod-tile:hover:not(:disabled) { border-style: solid; transform: translateY(-2px) rotate(-0.8deg); box-shadow: 3px 3px 0 var(--etq-sombra); }
+.cart-total { font-size: var(--fs-7); }
+.cart-total span:first-child { font-family: var(--font-display); font-size: var(--fs-4); letter-spacing: 0.08em; }
+
+/* Estados vacíos con título de cartel */
+.empty h3, .empty b { font-family: var(--font-display); letter-spacing: 0.06em; }
+
+/* =====================================================================
+   Pantallas de lectura (Predicción y Datos): «modo sobrio»
+   Regla UX: la marca enmarca, los datos mandan. Sin etiquetas ladeadas, sin filetes ni sombras de afiche,
+   un solo color de acento, mucho aire y los detalles técnicos plegados (<details class="ux-mas">).
+   ===================================================================== */
+.page.sobria { gap: var(--sp-5); }
+.page.sobria .page-head .title { font-size: var(--fs-7); }
+.page.sobria .page-head .lead { font-size: var(--fs-3); max-width: 52ch; }
+.page.sobria .card {
+  box-shadow: none; border-color: var(--line); border-radius: var(--r-sm);
+  background-color: color-mix(in srgb, var(--surface) 96%, transparent); padding: var(--sp-3);
+}
+.page.sobria .kpi-row .card { border-top-width: 1px; }
+.page.sobria .btn-primary { box-shadow: none; }
+.page.sobria .btn-primary:hover:not(:disabled) { transform: none; box-shadow: none; }
+.page.sobria .tabs [role="tab"] { font-size: 1.15rem; }
+.page.sobria .tbl td { border-bottom-style: solid; border-bottom-color: var(--line); }
+.page.sobria .tbl th { border-bottom-width: 1px; border-bottom-color: var(--line-strong); }
+
+/* Títulos internos: rectos y sobrios (Big Noodle, sin rectángulo de color) */
+.ux-h { display: flex; align-items: center; gap: var(--sp-1); font-family: var(--font-display); font-size: var(--fs-4); font-weight: 400; letter-spacing: 0.05em; line-height: 1.1; margin: 0; color: var(--text); }
+.ux-k { font-family: var(--font-mono); font-size: var(--fs-2); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0; }
+/* La cifra protagonista: una por tarjeta */
+.ux-cifra { font-family: var(--font-display); font-size: var(--fs-8); line-height: 1; color: var(--text); margin: var(--sp-half) 0 var(--sp-1); font-variant-numeric: tabular-nums; }
+.ux-cifra span { display: block; font-family: var(--font-ui); font-size: var(--fs-2); color: var(--muted); letter-spacing: 0; margin-top: 0.25rem; }
+.ux-fila { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); flex-wrap: wrap; }
+.ux-panel { padding-top: var(--sp-3); }
+.ux { gap: var(--sp-3); }
+.ux-barra { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); flex-wrap: wrap; }
+.ux-confianza { display: inline-flex; align-items: center; gap: var(--sp-1); font-size: var(--fs-2); color: var(--muted); }
+.lead-sm { font-size: var(--fs-3); color: var(--text-2); max-width: 60ch; margin: 0; }
+.ux .chart-box { height: 15rem; }
+.ux-fila .field.select { min-width: 12rem; }
+
+/* Ranking: nombre, barra y cifra; las barras usan el acento con transparencia para no gritar */
+.ux-ranking { display: grid; gap: var(--sp-2); margin: var(--sp-2) 0; counter-reset: rk; }
+.ux-ranking li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr) auto; grid-template-rows: auto auto; column-gap: var(--sp-1); align-items: center; counter-increment: rk; }
+.ux-ranking li::before { content: counter(rk); grid-row: span 2; font-family: var(--font-display); font-size: var(--fs-4); color: var(--muted); }
+.ux-ranking .nombre { grid-column: 2; grid-row: 1; font-size: var(--fs-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ux-ranking .barra { grid-column: 2; grid-row: 2; margin-top: 0.3rem; }
+.ux-ranking b { grid-column: 3; grid-row: 1 / span 2; font-family: var(--font-display); font-size: var(--fs-5); font-weight: 400; color: var(--text); min-width: 2.5ch; text-align: right; }
+.barra { display: block; height: 0.375rem; border-radius: var(--r-pill); background: var(--line); overflow: hidden; }
+.barra i { display: block; height: 100%; border-radius: inherit; background: color-mix(in srgb, var(--gold) 80%, transparent); }
+
+/* Combos y segmentos: tarjetas uniformes en grilla */
+.ux-combos, .ux-segmentos, .ux-pasos { display: grid; gap: var(--sp-2); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 700px) { .ux-combos, .ux-segmentos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .ux-combos, .ux-segmentos, .ux-pasos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ux-combo { display: grid; gap: var(--sp-1); }
+.ux-combo p { margin: 0; display: grid; gap: 0.1rem; }
+.ux-combo b { font-family: var(--font-display); font-size: var(--fs-4); font-weight: 400; letter-spacing: 0.03em; }
+.ux-combo .acento { color: var(--gold); }
+.ux-seg { display: grid; gap: var(--sp-1); }
+.ux-seg p { margin: 0; color: var(--text-2); }
+.ux-seg-n { font-family: var(--font-display); font-size: var(--fs-5); }
+.ux-seg-n small { font-family: var(--font-ui); font-size: var(--fs-1); color: var(--muted); }
+
+/* Pasos del proceso de datos */
+.ux-paso { display: grid; gap: var(--sp-1); align-content: start; }
+.ux-paso .btn { justify-self: start; margin-top: var(--sp-1); }
+.paso-n { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; border: 1.5px solid var(--gold); color: var(--gold); font-size: 1rem; }
+.ux-paso .ux-cifra { font-size: var(--fs-7); }
+
+/* Zona de avisos: no ocupa espacio mientras está vacía */
+.ux-avisos:empty { display: none; }
+
+/* Listas compactas de Datos */
+.ux-modelos, .ux-corridas { display: grid; gap: var(--sp-2); margin-top: var(--sp-2); }
+.ux-modelos li { display: grid; gap: 0.25rem; padding-bottom: var(--sp-2); border-bottom: 1px solid var(--line); }
+.ux-modelos li:last-child { border-bottom: 0; padding-bottom: 0; }
+.ux-modelos p { margin: 0; }
+.ux-corridas li { display: grid; grid-template-columns: minmax(0, 1fr) auto 4rem; gap: var(--sp-1); align-items: center; font-size: var(--fs-2); }
+.ux-corridas li span:last-child { text-align: right; }
+
+/* Plegables: detalles técnicos y listas largas */
+.ux-mas { border: 1px solid var(--line); border-radius: var(--r-sm); background: color-mix(in srgb, var(--surface) 80%, transparent); }
+.ux-mas summary {
+  cursor: pointer; list-style: none; display: flex; align-items: center; gap: var(--sp-1); padding: var(--sp-2) var(--sp-3);
+  font-size: var(--fs-2); font-weight: 500; color: var(--text-2);
+}
+.ux-mas summary::-webkit-details-marker { display: none; }
+.ux-mas summary::before { content: "+"; display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 50%; border: 1px solid var(--line-strong); font-size: 0.9rem; color: var(--gold); transition: transform var(--dur-2) var(--ease-standard); }
+.ux-mas[open] summary::before { content: "−"; }
+.ux-mas summary:hover { color: var(--text); }
+.ux-mas summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: var(--r-sm); }
+.ux-mas-cuerpo { display: grid; gap: var(--sp-2); padding: 0 var(--sp-3) var(--sp-3); }
+.ux-mas-cuerpo p { margin: 0; color: var(--text-2); max-width: 70ch; }
+.ux-tecnico { font-family: var(--font-mono); font-size: var(--fs-2); color: var(--muted) !important; }

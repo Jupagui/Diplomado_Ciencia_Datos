@@ -23,6 +23,7 @@ Lee siempre `PLAN.md` (fuente de verdad), `documento_srs_especificaci_n_t_cnica.
 
 ## Convenciones frontend
 - Diseño «Órbita» copiado de Orbis (`styles/`, `ui/`, `layout/AppShell.tsx`): no reescribir, extender. Estilos propios solo en `styles/app.css`, usando tokens.
+- Marca Red Rooster (Manual de marca v1.0): los colores y fuentes están en `styles/tokens.css` (`--rr-*`, `--serie-1..6`, `--font-marca`, `--font-cartel`) y la capa de marca al final de `styles/app.css`. `--gold` = mostaza en pizarra y rojo en tiza. Nunca fotos de platos: solo ilustraciones (`public/marca/`). Rojo nunca como texto pequeño sobre pizarra; mostaza nunca sobre rojo. Precios y números en Big Noodle (`--font-display`): Heartbreaking y Sunset Boulevard son demo y no traen `$` ni tildes (Sunset tampoco números).
 - Clave de tema: `mn-theme`. Token JWT: `mn-token` (localStorage); el interceptor de `services/api.ts` lo adjunta y ante 401 redirige a `/login`.
 - Cada ruta monta su fondo animado en `AppShell.Fondo` (Inicio=OrbitBackdrop, POS/Productos/Clientes=Blueprint, Analítica=Constellation, Asesor=TopoRadar, Datos=SealTrace, Login=OrbitBackdrop).
 - Gráficos con Recharts leyendo colores de los tokens con `usePaleta()` (`charts/paleta.ts`).
